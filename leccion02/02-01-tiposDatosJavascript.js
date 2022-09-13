@@ -1,5 +1,0 @@
-let nombreCompleto = "Juan perez";
-
-
-
-

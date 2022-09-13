@@ -1,71 +1,150 @@
-//operadores de comparacion 
+let a = 3, b =2 ; 
+let z = a+b ; 
+console.log("Resultado: "+ z);
 
-a = 0;
+z = a - b ;
+console.log("resultado de la resta : " + z );
 
-if(a % 2 == 0){
-    console.log("es un numero par")
+z = a * b ;
+console.log("resultado de la multiplicacion : " + z );
+
+z = a / b ;
+console.log("resultado de la divicion es  : " + z );
+
+z = a % b ;
+console.log("resultado del reciduo es  : " + z );
+
+z = a ** b ;
+console.log("resultado del exponente es  : " + z );
+
+//incremento 
+// pre incremento ( ++  entes de la variable )
+
+z= ++a ;
+console.log(a);
+console.log(z);
+
+z= b++ ;
+console.log(b);
+console.log(z);
+
+
+
+//post incremento (++ despues de la variable )
+
+// operadores de asignacion 
+let v = 1 ;
+v += 3 ; 
+console.log( v );
+
+v -= 2 ;
+console.log( v );
+
+// operadores de comparacion 
+
+a = 3 , b = 2 , c = "3";
+z = ( a === c ) ; 
+console.log( z );
+z = ( a != c ) ; 
+console.log( z );
+a = 3 , b = 2 , c = "3";
+z =  a <= b ;
+console.log( z );
+a = 5 ;
+
+if( a % 2 == 0 ) {
+    console.log("Es un numero par");
 }else{
-    console.log("es un numero impar")
+    console.log("Es un numero Inpar");
+}
+//ejemplo mayor de edad 
+
+let edad = 18 ,  adulto = 18 ; 
+
+if( edad >= adulto ){
+    console.log("es adulto ")
+}else{
+    console.log("es menor de edad ")
+}
+// OPERADORES LOGICOS 
+
+a = -1; 
+let valMin = 0 , valMax = 10 ;
+
+
+if (a >= valMin && a <= valMax) {
+    console.log("Dentro de rango");
+    
+} else {
+    console.log("FUERA DE RANGO ");
 }
 
+// OPERADOR OR 
 
-let edad = 17 ;
-const mayor_edad =18 ; 
-if(edad >=mayor_edad){
-    console.log("es mayor de edad ");
-}else{
-    console.log("es menor de edad ");
-};
+ let vacaciones = true , diaDescanso = false ;
+ if ( vacaciones || diaDescanso ) {
+    console.log( "Puede asistir ")
+ } else {
+     console.log("No puede asistir ")
+ }
 
+ //operador ternario 
 
-//operadores logicos 
+let resultado = ( 2>2 ) ? "Es verdadero" : "Es Falso ";
+console.log( resultado );
+a = 2 ;  
+console.log( resultado = ( a % 2 == 0 ) ? " Es par" : " Es inpar" );
 
-a = 10 ; 
-let valMin = 0 , valMax =10 ;
+let miNumero = "100" ;
+console.log( typeof miNumero);
+edad =  Number(miNumero);
 
+console.log(edad);
 
-if (a >= valMin && a <= valMax){
-
-    console.log( a + " Se en encuentra dentro del rango ");
-
-}else{
-    console.log( a + " No se en encuentra dentro del rango ");
+if (isNaN(edad)) {
+    console.log("No es un numero" );   
+} else {
+    if ( edad >= 18 ) {
+        console.log("la persona puede votar ");
+    } else {
+        console.log("muy joven para votar  ");
+    }
 }
+resultado = ( isNaN( edad ) ) ? "no es un numero": ( ( edad >= 18 ) ? "puede votar " : "no puede votar " ) ; 
+console.log( resultado )
+console.log(typeof edad);
+//operador ternario 
+console.log( resultado = ( edad >= 18 ) ? "la persona puede votar ": "la persona no puede votar " );
+
+let x = 5 , y = 10 ;
+z = ++x + y--;
+
+console.log( x );
+console.log( y );
+console.log( z );
+
+resultado = 4 + 5 * 6 / 3 ;
+console.log( resultado );
 
 
-let vacaciones = false , diaDescanso = false ; 
-
-if(vacaciones || diaDescanso ){
-    console.log(" si puede salir");
-}else{
-    console.log("no puede salir");
-}
 
 
-let resultado = (3>3) ? "verdadero" : "falso" ; 
-console.log(resultado);
-
-let b =3 ;
-let resultado2 = (b % 2 == 0) ? "es par " : " es impar "
-console.log(resultado2);
 
 
-let miNumero = "18";
-
-edad2 = Number(miNumero);
-console.log(typeof edad2);
-
-resultado = (edad >= mayor_edad) ? "puede votar ": "no puede votar";
-
-console.log(resultado);
 
 
-let numero2 ="18";
-let num = Number(numero2);
-console.log(num);
 
-resultado = (isNaN(num) ? "no es un numero": ((numero2 >= mayor_edad) ? "puede votar ": "no puede votar"));
-console.log(resultado);
+
+
+
+
+
+
+
+
+
+
+
 
 
 

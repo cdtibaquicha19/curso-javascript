@@ -1,4 +1,3 @@
-var nombre = "cristyan";
-
+var nombre = "Ubaldo";
 console.log(nombre);
 
