@@ -1,11 +1,19 @@
 class Persona {
 
-    static contadorObjetosPersona = 0 ;
+    static contadorPersonas = 0 ;
+    static get MAX_OBJ (){
+        return 5 ; 
+    };
+
+    email = "valor default de email " ; //atributo de los objetos 
 
     constructor(nombre, apellido){
         this._nombre = nombre ;
         this._apellido  = apellido ; 
-        Persona.contadorObjetosPersona++;
+        if( Persona.contadorPersonas <  Persona.MAX_OBJ ){
+            this.idPersona= ++Persona.contadorPersonas;
+        }else{
+            console.log("Se ha superado el tope maximo ")}
         }
     get nombre(){
         return this._nombre;
@@ -24,7 +32,7 @@ class Persona {
         return this.nombre +" "+ this.apellido ; 
     }
     toString(){
-        return this.nombreCompleto() ;
+        return this.idPersona +" " + this.nombreCompleto() ;
     }
     static saludar (){
         console.log("saludos desde metodo static ")
@@ -47,20 +55,31 @@ class Empleado extends Persona{
     }
     //sobrescritura 
     nombreCompleto(){
-        return super.nombreCompleto() + ", Departamento :"+this._departamento
+        return  super.nombreCompleto() + ", Departamento :"+this._departamento
     }
 }
 
 
 let persona1 = new Persona ('juan',' perez');
+let persona2 = new Persona ('pedro',' lopez');
+let persona3 = new Persona ('pedro',' lopez');
+let persona4 = new Persona ('pedro',' lopez');
+let persona5 = new Persona ('pedro',' lopez');
 
-console.log( persona1 );
+console.log( persona1.toString() );
 
 let empleado1 = new Empleado('cristyan' , ' tibaquicha ', 'sistemas');
-console.log(empleado1);
+console.log(empleado1.toString);
 console.log(empleado1.nombreCompleto());
 
 console.log(empleado1.toString());
 
 Persona.saludar2(persona1);
 console.log (Persona.contadorObjetosPersona);
+console.log(persona1.toString()) ;
+console.log(persona2.toString());
+console.log(empleado1.toString());
+
+Persona.MAX_OBJ = 10 ;
+console.log(Persona.MAX_OBJ);
+
