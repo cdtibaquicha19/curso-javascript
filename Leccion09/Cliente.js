@@ -21,7 +21,9 @@ class Cliente extends Persona {
     } 
 
     toString(){
-        return super.toString +" " +this._idCliente + " "+ this._fechaRegistro ; 
+        return `${super.toString} 
+                ${this._idCliente} 
+                ${this._fechaRegistro}` ; 
     }
 
 
