@@ -27,10 +27,62 @@ class Producto {
     
 }
 
+class Orden {
+    static contadorOrdenes = 0 ;
+    static get MAX_PRODUCTOS(){
+        return 5 ;
+    }
+    constructor(){
+
+        this._idOrden = ++ Orden.contadorOrdenes ;
+        this._productos = [];
+        this._contadorProductoAgregados = 0 ; 
+
+    }
+
+    get idOrden(){
+        return this._idOrden ; 
+    }
+
+    agregarProducto(producto){
+        if(this._productos.length < Orden.MAX_PRODUCTOS){
+            this._productos.push(producto);
+
+
+        }else{
+            console.log("no se puede agregar mas productos")
+        }
+    }
+    calcularTotal(){
+        let totalVenta = 0 ;
+        for(let producto of this._productos){
+          totalVenta +=  producto.precio;
+        }
+        return totalVenta ; 
+    }
+
+    mostrarOrden(){
+        let productosOrden = "";
+        for(let producto of this._productos){
+            productosOrden += producto.toString()+" " ;
+        }
+        console.log(`Orden ${this._idOrden} Total: $ ${this.calcularTotal()} Productos: ${productosOrden}`);
+
+    }
+
+
+
+}
+
 let producto1 = new Producto("Pantalon",20000);
 let producto2 = new Producto("camisa", 15000);
 
-console.log(producto1.toString());
-console.log(producto2.toString());
+
+let orden1 = new Orden ();
+
+orden1.agregarProducto(producto1);
+orden1.agregarProducto(producto2);
+
+orden1.mostrarOrden() ;
 
 
