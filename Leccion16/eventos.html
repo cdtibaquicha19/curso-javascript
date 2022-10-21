@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo DOM con javascript </title>
+</head>
+<body onload="entrar()">
+    <h1 id="titulo"> Manejo DOM con javascript </h1>
+    
+    <br>
+    <div id="mostrar"></div>
+    <script>
+         
+        document.getElementById("titulo").onclick = cambiarTexto;
+
+        function cambiarTexto(){
+            document.getElementById("mostrar").innerHTML = "nuevo contenido" ; 
+            
+        }
+        function entrar (){
+            alert("Entrando a la pagina web ");
+            let texto = "";
+            if(navigator.cookieEnabled){
+                texto = "cookies estan habilitadas "
+            }else{
+                texto="cookies desactivadas "
+            }
+            document.getElementById("mostrar").innerHTML = texto;
+            
+        }
+    </script>
+    
+</body>
+</html>

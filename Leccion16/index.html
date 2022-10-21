@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Ejemplo DOM  con Javascript </title>
+
+    <style>
+        .azul{
+            color : blue ; 
+        }
+    </style>
 </head>
 <body>
-    <h1 id="cabecero">Ejemplo DOM con Javascript  </h1>
-    <p id="parrafo">saludos </p>
+    <h1 class="azul" id="cabecero">Ejemplo DOM con Javascript  </h1>
+    <p class="azul" id="parrafo">saludos </p>
+    <p class="azul" id="parrafo2">otro parrafo </p>
     
     
     
@@ -18,11 +25,30 @@
     
     
     <script>
-        let cabecero = document.getElementById("cabecero").innerHTML;
-        let parrafo = document.getElementById("parrafo").innerHTML;
-        console.log("Valor cabecero: "+cabecero+ " PARRAFO " + parrafo)
-    </script>
+        let cabecero = document.getElementById("cabecero");
+        
+        console.log(`valor cabecero: ${cabecero.innerHTML}`);
+        let parrafo = document.getElementById("parrafo");
+        console.log(`valor Parrafo: ${parrafo.innerHTML}`);
 
+        let parrafos = document.getElementsByTagName('p');
+        console.log(`numero de parrafos : ${parrafos.length}`);
+
+        for(let i = 0 ; i < parrafos.length ; i ++ ){
+            console.log(parrafos[i].innerHTML);
+        }
+
+        let elementos = document.getElementsByClassName('azul');
+       
+
+        for (const elemento of elementos) {
+
+            console.log(elemento.innerHTML);
+
+            
+        }
+
+    </script>
 
 </body>
 
