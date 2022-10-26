@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manejo DOM con javascript </title>
+</head>
+<body >
+    <h1 id="titulo"> Manejo DOM con javascript </h1>
+    
+    <br>
+    <form id="formulario">
+
+        Nombre: <input class="cambiarcolor" id="nombre" type="text"/>
+    </form>
+
+    <script>
+        const forma = document.getElementById("formulario");
+
+        function convertir(nombreInput){
+            nombreInput.value = nombreInput.value.toUpperCase();
+        } 
+        function rojo(titulo){
+            titulo.style.color = "red";
+        }
+        function azul(titulo){
+            titulo.style.color = "blue"
+        }
+
+        forma.addEventListener("focus",(evento)=>{
+            evento.target.style.background = "pink";
+            },true);      
+        document.getElementById("nombre").addEventListener("blur",regresar);
+
+        function cambiar(evento){
+           // evento.target.style.background = "yellow";
+        }
+        function regresar (evento){
+            evento.target.style.background = "white" ;
+        }
+
+
+
+    </script>
+</body>
+</html>
