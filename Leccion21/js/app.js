@@ -1,16 +1,5 @@
-const ingresos = [
-    new Ingreso('Sueldo ', 2500.00),
-    new Ingreso('Venta coche', 1500),
-    new Ingreso('Nuevo Ingreso', 1500),
-    new Ingreso('Nuevo Ingreso', 1500),
-];
-
-const egresos = [
-    new Egreso('Renta departamento', 900),
-    new Egreso('Ropa', 400),
-    new Egreso('Ropa', 400)
-];
-
+const ingresos = [];
+const egresos = [];
 let cargarApp = ()=>{
     cargarCabecero();
     cargarIngresos();
@@ -43,16 +32,16 @@ let cargarCabecero = ()=>{
 }
 
 const formatoMoneda = (valor)=>{
-    return valor.toLocaleString("en-US",
+    return valor.toLocaleString("es-CO",
     {
         style :"currency",
-        currency:"USD",
-        minimumFractionDigits:2
+        currency:"COP",
+        minimumFractionDigits:0
     });
 }
 
 const formatoPorcentaje = (valor)=>{
-    return valor.toLocaleString("en-US",
+    return valor.toLocaleString("es-CO",
     {
         style :"percent",
         minimumFractionDigits:2 
@@ -62,7 +51,7 @@ const formatoPorcentaje = (valor)=>{
 const cargarIngresos = ()=>{
     let ingresosHTML='';
 
-    if(ingresos.length == 0){
+    if( ingresos.length == 0 ){
         ingresosHTML = "<p> No hay registros. </p>";
     }
     for (let ingreso of ingresos){
@@ -96,15 +85,15 @@ const eliminarIngreso = (id)=>{
    
         let indiceEliminar = ingresos.findIndex(ingreso=>{ingreso.id === id});
         ingresos.splice(indiceEliminar,1);
-        cargarApp(); 
-    
+        cargarApp();  
 }
-
-
-
-
 const cargarEgresos = ()=>{
+  
     let egresosHTML='';
+    if(egresos.length == 0){
+        egresosHTML = "<p> No hay registros. </p>";
+    }
+
     for (let egreso of egresos){
         egresosHTML += crearEgresoHTML(egreso)
     }
@@ -120,10 +109,60 @@ const crearEgresoHTML = (egreso)=>{
         <div class="elemento_porcentaje">${ formatoPorcentaje(egreso.valor / totalEgresos())}</div>
         <div class="elemento_eliminar">
             <button class="elemento_eliminar--btn">
-                <ion-icon name="close-circle-outline"></ion-icon>
+                <ion-icon name="close-circle-outline"
+                onclick="eliminarEgreso(${egreso.id})"></ion-icon>
             </button>
         </div>
     </div>
 </div>`
 return egresoHTML ;
+}
+
+const eliminarEgreso = (id)=>{
+    let indiceEliminar = egresos.findIndex(egreso=>{egreso.id === id});
+    egresos.splice(indiceEliminar,1);
+    cargarApp(); 
+}
+const agregarDato =()=>{
+    let forma = document.forms["forma"] ;
+    let tipo = forma["tipo"];
+    let descripcion =forma["descripcion"];
+    let valor = forma["valor"];
+
+    if(descripcion.value !== "" && valor.value !== "" ){
+        if(tipo.value === "ingreso"){
+            ingresos.push(new Ingreso(descripcion.value,Number(valor.value)));
+            Swal.fire(
+                'Agregado ingreso!',
+                '',
+                'success'
+              )
+            descripcion.value = "";
+            valor.value = "";
+            cargarCabecero();
+            cargarIngresos();
+
+        }else if(tipo.value === "egreso"){
+            egresos.push(new Egreso(descripcion.value,Number(valor.value))) ;
+            Swal.fire(
+                'Agregado egreso!',
+                '',
+                'success'
+              )
+            descripcion.value = "";
+            valor.value = "";
+            cargarCabecero();
+            cargarEgresos();
+        }
+
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Debes agregar un valor !',
+            footer: '<a href="">¿ Intenta nuevamente ?</a>'
+          })
+    }
+    
+
 }
