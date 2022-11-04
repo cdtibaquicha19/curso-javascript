@@ -14,6 +14,7 @@ const egresos = [
 let cargarApp = ()=>{
     cargarCabecero();
     cargarIngresos();
+    cargarEgresos();
 }
 
 let totalIngresos = ()=>{
@@ -60,25 +61,69 @@ const formatoPorcentaje = (valor)=>{
 
 const cargarIngresos = ()=>{
     let ingresosHTML='';
-    for (ingreso of ingresos){
-        ingresosHTML += crearIngresoHTML(ingreso)
+
+    if(ingresos.length == 0){
+        ingresosHTML = "<p> No hay registros. </p>";
+    }
+    for (let ingreso of ingresos){
+        
+        ingresosHTML += crearIngresoHTML(ingreso);
     }
     document.getElementById("lista-ingresos").innerHTML = ingresosHTML; 
+
 }
 
 
-const crearIngresoHTML = ()=>{
-    let ingresoHTML = `
+const crearIngresoHTML = (ingreso)=>{
+    let  ingresoHTML = `
     <div class="elemento limpiarEstilos">
     <div class="elemento_descripcion">${ingreso.descripcion}</div>
     <div class="derecha limpiarEstilos">
         <div class="elemento_valor">+ ${formatoMoneda(ingreso.valor)}</div>
         <div class="elemento_eliminar">
             <button class="elemento_eliminar--btn">
-                <ion-icon name="close-circle-outline"></ion-icon>
+                <ion-icon name="close-circle-outline"
+                onclick="eliminarIngreso(${ingreso.id})"></ion-icon>
             </button>
         </div>
     </div>
 </div>`;
+    
 return ingresoHTML ; 
+}
+
+const eliminarIngreso = (id)=>{
+   
+        let indiceEliminar = ingresos.findIndex(ingreso=>{ingreso.id === id});
+        ingresos.splice(indiceEliminar,1);
+        cargarApp(); 
+    
+}
+
+
+
+
+const cargarEgresos = ()=>{
+    let egresosHTML='';
+    for (let egreso of egresos){
+        egresosHTML += crearEgresoHTML(egreso)
+    }
+    document.getElementById("lista-egresos").innerHTML = egresosHTML; 
+}
+
+const crearEgresoHTML = (egreso)=>{
+    let egresoHTML = `
+    <div class="elemento limpiarEstilos">
+    <div class="elemento_descripcion">${egreso.descripcion}</div>
+    <div class="derecha limpiarEstilos">
+        <div class="elemento_valor">- ${formatoMoneda(egreso.valor)}</div>
+        <div class="elemento_porcentaje">${ formatoPorcentaje(egreso.valor / totalEgresos())}</div>
+        <div class="elemento_eliminar">
+            <button class="elemento_eliminar--btn">
+                <ion-icon name="close-circle-outline"></ion-icon>
+            </button>
+        </div>
+    </div>
+</div>`
+return egresoHTML ;
 }
